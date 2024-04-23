@@ -1,25 +1,50 @@
-# #添加字段
-alter table hi add gender char(1);
-alter table hi add age integer;
-# #删除字段
-alter table hi drop gender;
-#修改字段类型
-alter table hi modify id integer;
-#修改字段名和字段类型
-alter table hi change id id1 int;
-# 修改表名
-alter table hi rename to hi;
-#删除表并重建
-truncate table hi;
-#添加数据
-insert into hi values (01,"王五",'男',18),(02,"张三",'男',22),(03,"李四",'男',25);
-insert into hi value (04,"王",'女',20);
-#修改数据   可以不接条件
-update hi set id=01 where name='王五';
-update hi set age=20;
-#删除数据   不加条件删除整张全部数据
-delete from hi where id=3;
-delete from hi ;
+
+#查询 //distinct跳过重复数据
+    select *from hi;
+    select distinct id  from hi;
+    #聚合函数  数量
+        select count(*)
+        from hi;
+    #最大值
+        select max(id)
+        from hi;
+    #最小值
+        select min(id)
+        from hi;
+    #平均值
+        select avg(id)
+        from hi;
+    #和
+        select sum(id)
+        from hi;
+    #分组查询
+        select gender,count(*)
+        from hi
+        where id>1
+        group by gender
+        having gender='男';
+    #排序查询
+        #升序
+            select *
+            from hi
+            order by age asc;
+        #降序
+            select *
+            from hi
+            order by age desc;
+    #分页查询
+        select *
+        from hi
+        limit 0,2;
+    #多表查询
+        select s.son,s.sn
+        from s join sc on s.son=sc.son;
+    #子查询
+        select *
+        from s
+        where s.maj=(select s.maj from s where s.sn='王彤');
+
+
 
 
 
