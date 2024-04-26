@@ -1,18 +1,21 @@
-#查询用户
-use mysql;
-select * from user;
-#创建用户
-create user 'qzx'@'localhost' identified by'123456';
-#修改密码
-alter user 'qzx'@'localhost' identified with mysql_native_password by '12345678';
-#删除用户
-drop user 'qzx'@'localhost';
+#方式一
+    #查看/设置事务提交方式
+    select @@autocommit;
+    set @@autocommit=0;/*0为手动提交，1为自动*/
 
 
-#查询权限
-show grants for'qzx'@'localhost';
+    #提交事务
+    commit;
 
-#授予权限
-grant all on *.* to'qzx'@'localhost';
-#撤销权限
-revoke all on * from'qzx'@'localhost';
+    #回滚事务
+    rollback;
+#方式二
+    #开启事务
+    start transaction;
+    #或
+    begin;
+ #提交事务
+    commit;
+
+    #回滚事务
+    rollback;
