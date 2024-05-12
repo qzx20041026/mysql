@@ -1,21 +1,10 @@
-#约束
-#非空
-not null;
+#查看索引
+show index from hi;
 
 
-#唯一
-unique;
+#创建索
+create index id_index on hi(id);
 
 
-#主键
-primary key;
-
-
-#外键
-foreign key;
-
-
-#检查约束
-check;
-
-
+#删除索引
+drop index id_index on hi;
